@@ -21,6 +21,7 @@ export default class Autowhatever extends Component {
     ]),
     focusedSectionIndex: PropTypes.number, // Section index of the focused item
     focusedItemIndex: PropTypes.number,    // Focused item index (within a section)
+    allowNullFocus: PropTypes.bool,        // Should using arrow keys to navigate options result in null options
     theme: PropTypes.object                // Styles. See: https://github.com/markdalgleish/react-themeable
   };
 
@@ -42,6 +43,7 @@ export default class Autowhatever extends Component {
     itemProps: {},
     focusedSectionIndex: null,
     focusedItemIndex: null,
+    allowNullFocus: false,
     theme: {
       container: 'react-autowhatever__container',
       containerOpen: 'react-autowhatever__container--open',
@@ -184,7 +186,7 @@ export default class Autowhatever extends Component {
   }
 
   onKeyDown(event) {
-    const { inputProps, focusedSectionIndex, focusedItemIndex } = this.props;
+    const { inputProps, focusedSectionIndex, focusedItemIndex, allowNullFocus } = this.props;
     const { onKeyDown: onKeyDownFn } = inputProps; // Babel is throwing:
                                                    //   "onKeyDown" is read-only
                                                    // on:
@@ -196,6 +198,7 @@ export default class Autowhatever extends Component {
         const { multiSection, items, getSectionItems } = this.props;
         const sectionIterator = createSectionIterator({
           multiSection,
+          allowNull: allowNullFocus,
           data: multiSection ?
             items.map(section => getSectionItems(section).length) :
             items.length

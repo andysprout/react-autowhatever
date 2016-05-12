@@ -30,6 +30,11 @@ const initialState = {
     value: 'Multi section - Up/Down/Enter',
     focusedSectionIndex: null,
     focusedItemIndex: null
+  },
+  8: {
+    value: 'Custom input element',
+    focusedSectionIndex: null,
+    focusedItemIndex: null
   }
 };
 

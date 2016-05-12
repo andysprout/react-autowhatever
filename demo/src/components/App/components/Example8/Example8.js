@@ -74,7 +74,14 @@ class Example extends Component {
   render() {
     const { value, focusedSectionIndex, focusedItemIndex, onChange,
             onMouseEnter, onMouseLeave, onMouseDown } = this.props;
-    const inputProps = { value, onChange };
+    const inputProps = {
+      value,
+      onChange,
+      tabIndex: 0,
+      autoComplete: null,
+      type: null,
+      ref: null
+    };
     const itemProps = { onMouseEnter, onMouseLeave, onMouseDown };
 
     return (
